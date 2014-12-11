@@ -1,0 +1,44 @@
+def run_cli
+  user = ask_email
+  action = ask_action
+  case action
+  when 0
+    create_short_url(user)
+  when 1
+    visit_shortened_url
+  else
+    raise "Impossible action"
+  end
+end
+
+def ask_email
+  puts "Input your email"
+  email = gets.chomp
+  User.where(email: email).first_or_create!
+  # User.create!(email: email) unless User.exists?(email: email)
+  # User.where(email: email).first
+end
+
+def ask_action
+  puts "What do you want to do"
+  puts "0. Create shortened URL"
+  puts "1. Visit shortened URL"
+  gets.chomp.to_i
+end
+
+def create_short_url(user)
+  puts "Type in your long url"
+  long_url = gets.chomp
+  ShortenedUrl.create_for_user_and_long_url!(user, long_url)
+  short = ShortenedUrl.last
+  puts "Short url is: #{short.short_url}"
+end
+
+def visit_shortened_url
+  puts "Type in the shortened url"
+  short_url = gets.chomp
+  long_url = ShortenedUrl.where(short_url: short_url).first.long_url
+  Launchy.open(long_url) 
+end
+
+run_cli

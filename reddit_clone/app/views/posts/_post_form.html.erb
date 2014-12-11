@@ -1,0 +1,46 @@
+<% action_url = (action == :create ? posts_url : post_url(post) ) %>
+<% submit_value = (action == :create ? "Create Post" : "Update" ) %>
+<% method = (action == :create ? "POST" : "PATCH" ) %>
+
+
+<form action="<%= action_url %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= render 'layouts/auth_input' %>
+  
+  <label>
+    Title:
+    <input type="text" name="post[title]" value="<%= post.title %>">
+  </label>
+  <br>
+  <br>
+  
+  <label>
+    Url:
+    <input type="text" name="post[url]" value="<%= post.url %>">
+  </label>
+  <br>
+  <br>
+  
+  <label>
+    Content:
+    <textarea name="post[content]"><%= post.content %></textarea>
+  </label>
+  <br>
+  <br>
+  
+  <p>Topics</p>
+    <input type="hidden" name="post[topic_ids][]" value="">
+    <% subs.each do |sub|  %>
+      <label><%=sub.title %>
+      <input type="checkbox"
+             name="post[topic_ids][]"
+             value="<%=sub.id%>"
+             <%= 'checked' if post.topic_ids.include?(sub.id) %>>
+      </label>
+    <br>
+  <% end %>
+  <br>
+  
+  <input type="submit" value="<%= submit_value %>">
+
+</form>

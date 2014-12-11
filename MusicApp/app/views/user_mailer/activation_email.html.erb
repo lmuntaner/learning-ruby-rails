@@ -1,0 +1,9 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Welcome to Music App!</h1>
+    <p>Please press the link below to activate your account!</p>
+    <%= link_to "Activate my account",
+                activate_user_url(activation_token: @user.activation_token)%>
+  </body>
+<html>

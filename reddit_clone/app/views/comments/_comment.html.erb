@@ -1,0 +1,13 @@
+
+<ul>
+  <li>Author: <%= comment.author.username %></li>
+</ul>
+
+<p>
+  <%= comment.content %>
+  <%= button_to "Upvote!", upvote_comment_url(comment), method: :post %>
+  <%= button_to "Downvote!", downvote_comment_url(comment), method: :post %>
+  <%= link_to "Show Comment", post_comment_url(comment.post, comment) %>
+</p>
+
+<p>The votes for this comment is: <%= comment.vote_count %></p>

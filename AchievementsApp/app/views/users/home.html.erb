@@ -1,0 +1,6 @@
+<% if logged_in? %>
+  <h1>Welcome <%= current_user.username %></h1>
+<% else %>
+    <%= link_to "Sign in", new_session_url %>
+    <%= link_to "Sign up", new_user_url %>
+<% end %>

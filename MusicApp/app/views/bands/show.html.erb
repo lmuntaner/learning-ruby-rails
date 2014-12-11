@@ -1,0 +1,17 @@
+<h1>Welcome to the <%= @band.name %> show page</h1>
+
+<h3>These are the current albums</h3>
+<ul>
+  <% @band.albums.each do |album| %>
+    <li><%= link_to album.name, album_url(album) %>
+  <% end %>
+</ul>
+
+<% if is_admin? %>
+  <%= link_to "New Album", new_band_album_url(@band) %>
+  <br>
+<% end %>
+
+<% if is_admin? %>
+  <%= link_to "Edit", edit_band_url(@band) %>
+<% end %>

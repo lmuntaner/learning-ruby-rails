@@ -1,0 +1,21 @@
+<p><strong><%= link_to post.title, post_url(post) %></strong></p>
+
+<ul>
+  <li>url: <%= post.url %></li>
+  <li>Author: <%= post.author.username %></li>
+  <li>Topics: 
+    <ul><% post.topics.each do |topic| %>
+      <li><%= link_to topic.title, sub_url(topic) %></li>
+      <%end%>
+    </ul></li>
+</ul>
+
+<p><%= post.content %></p>
+
+<p>The votes for this post is: <%= post.vote_count %></p>
+
+<%= link_to "Comment", new_post_comment_url(post) %>
+
+<% if current_user == post.author %>
+  <%= link_to "Edit Post", edit_post_url(post) %>
+<% end %>

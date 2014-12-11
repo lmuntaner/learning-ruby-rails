@@ -1,0 +1,12 @@
+<p><strong>Add a note</strong></p>
+
+<form action="<%= track_notes_url(track) %>" method="POST">
+  <input type="hidden" name="_method" value="POST">
+  <%= render 'layouts/auth_input' %>
+  
+  <textarea name="note[text]"></textarea>
+  <br>
+  <br>
+  
+  <input type="submit" value="Send note">
+</form>

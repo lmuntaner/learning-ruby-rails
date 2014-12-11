@@ -1,0 +1,11 @@
+<h1>Edit <%= @cat.name %></h1>
+
+<% if flash.now[:notice] %>
+  <ul>
+  <% flash.now[:notice].each do |message| %>
+      <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= render partial: "form", locals: {cat: @cat} %>

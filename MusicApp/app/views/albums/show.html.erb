@@ -1,0 +1,22 @@
+<h1>Welcome to Album: <%= @album.name %> show page</h1>
+
+<ul>
+  <li>Album by: <%= link_to @album.band.name, band_url(@album.band) %></li>
+  <li>Recorded at: <%= @album.recorded_at %></li>
+</ul>
+
+<h3>These are the current tracks</h3>
+<ul>
+  <% @album.tracks.each do |track| %>
+    <li><%= link_to track.name, track_url(track) %>
+  <% end %>
+</ul>
+
+<% if is_admin? %>
+  <%= link_to "New Track", new_album_track_url(@album) %>
+  <br>
+<% end %>
+
+<% if is_admin? %>
+  <%= link_to "Edit", edit_album_url(@album) %>
+<% end %>

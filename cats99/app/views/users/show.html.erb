@@ -1,0 +1,32 @@
+<h1><%= @user.user_name %></h1>
+
+<h3>My Cats!!</h3>
+<ul>
+  <% @user.cats.each do |cat| %>
+     <li><%= link_to cat.name, cat_url(cat) %></li> 
+  <% end %>
+</ul>
+
+<h3>My Rental Requests</h3>
+
+  <table>
+    <tr>
+      <th>Owner</th><th>Cat</th><th>Start Date</th><th>End Date</th>
+      <th>Status</th>
+    </tr>
+    <% current_user.rental_requests.each do |request| %>
+      <tr>
+        <td><%= request.cat.owner.user_name %></td>
+        <td><%= request.cat.name %></td>
+        <td><%= request.start_date %></td>
+        <td><%= request.end_date %></td>
+        <td><%= request.status %></td>
+      </tr>
+    <% end %>
+  </table>
+  <br>
+
+<%= link_to "All the cats!", cats_url %>
+<br>
+<br>
+<%= link_to "Create New Cat, Ex Nihilo", new_user_cat_url %>

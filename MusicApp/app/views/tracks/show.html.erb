@@ -1,0 +1,26 @@
+<h1>Welcome to Track: <%= @track.name %> show page</h1>
+
+<ul>
+  <li>Album: <%= link_to @track.album.name, album_url(@track.album) %></li>
+  <li><%= @track.bonus.capitalize %> track</li>
+</ul>
+
+<p><strong>Lyrics:</strong></p>
+<p><pre><%= ugly_lyrics(@track.lyrics) %></pre></p>
+
+<% if is_admin? %>
+  <%= link_to "Edit", edit_track_url(@track) %>
+<br>
+<% end %>
+
+<p><strong>All the notes</strong></p>
+
+<% if flash[:notes] %>
+  <p style="color: red;"><%= flash[:notes] %></p>
+<% end %>
+
+<% @track.notes.each do |note| %>
+  <%= render 'notes/note', note: note %>
+<% end %>
+
+<%= render 'notes/form', track: @track %>

@@ -1,0 +1,5 @@
+<p>Note from: <%= note.user.email %></p>
+<p><%= note.text %></p>
+<% if current_user == note.user || is_admin? %>
+  <%= button_to "Delete Note", track_note_url(note.track, note), method: :delete %>
+<% end %>

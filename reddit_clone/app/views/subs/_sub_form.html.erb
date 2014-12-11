@@ -1,0 +1,25 @@
+<% action_url = (action == :create ? user_subs_url : sub_url(sub) ) %>
+<% submit_value = (action == :create ? "Create Topic" : "Update" ) %>
+<% method = (action == :create ? "POST" : "PATCH" ) %>
+
+<form action="<%= action_url %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= render 'layouts/auth_input' %>
+  
+  <label>
+    Title:
+    <input type="text" name="sub[title]" value="<%= sub.title %>">
+  </label>
+  <br>
+  <br>
+  
+  <label>
+    Description:
+    <textarea name="sub[description]"><%= sub.description %></textarea>
+  </label>
+  <br>
+  <br>
+  
+  <input type="submit" value="<%= submit_value %>">
+
+</form>

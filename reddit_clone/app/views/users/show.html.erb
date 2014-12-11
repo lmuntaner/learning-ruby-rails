@@ -1,0 +1,10 @@
+<h1> Welcome <%= current_user.username %> </h1>
+
+<h3>Topics</h3>
+<ul>
+<% @subs.each do |sub| %>
+  <li><%= link_to sub.title, sub_url(sub) %></li>
+<% end %>
+</ul>
+
+<%= link_to "Create Topic", new_user_sub_url %>

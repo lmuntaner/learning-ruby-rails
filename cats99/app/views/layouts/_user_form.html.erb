@@ -1,0 +1,22 @@
+<% action = (is_session ? session_url : user_url)  %>
+<% value = (is_session ? "Log In!" : "Sign up")  %>
+
+
+<form action="<%= action %>" method="POST">
+  <%= render 'layouts/auth_input' %>
+  <label>
+    Username:
+    <input type="text"
+           name="user[user_name]" 
+           value="<%= user.user_name unless user.nil? %>">
+  </label>
+  <br>
+  <br>
+  
+  <label>
+    Password:
+    <input type="password" name="user[password]">
+  </label>
+  
+  <input type="submit" value="<%= value %>">
+</form>

@@ -1,0 +1,13 @@
+<h1>Topic: <%= @sub.title %></h1>
+
+<p>Topic Description:</p>
+<p><%= @sub.description %></p>
+
+<h4><strong>Posts</strong></h4>
+<%= render @sub.posts %>
+
+<%= link_to "Create Post", new_post_url %>
+
+<% if @sub.moderator == current_user %>
+  <%= link_to "Edit", edit_sub_url(@sub) %>
+<% end %>

@@ -1,0 +1,45 @@
+<% action_url = (action == :create ? albums_url : album_url(album) ) %>
+<% method = (action == :create ? "POST" : "PATCH" ) %>
+<% submit_value = (action == :create ? "Create" : "Update" ) %>
+<% current_band_id = (action == :create ? params[:band_id].to_i : album.band_id ) %>
+
+<form action="<%= action_url %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= render 'layouts/auth_input' %>
+  
+  <label>
+    Name of the band:
+    <select name="album[band_id]">
+    <% bands.each do |band| %>
+      <option value="<%= band.id %>"
+          <%= 'selected' if current_band_id == band.id %>>
+        <%= band.name %>
+      </option>
+    <% end %>
+    </select>
+  </label>
+  <br>
+  <br>
+  
+  <label>
+    Name of the album:
+    <input type="text" name="album[name]" value="<%= album.name %>">
+  </label>
+  <br>
+  <br>
+  
+  <label>
+    Recorded at:
+    <% Album::LOCATIONS.each do |location| %>
+      <input type="radio"
+             name="album[recorded_at]" 
+             value="<%= location %>"
+             <%= "checked" if location == album.recorded_at %>>
+             <%= location %>
+    <% end %>
+  </label>
+  <br>
+  <br>
+  
+  <input type="submit" value="<%= submit_value %>">
+</form>

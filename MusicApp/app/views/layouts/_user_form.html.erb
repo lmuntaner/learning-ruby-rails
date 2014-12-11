@@ -1,0 +1,23 @@
+<% action_url = (action == :user ? user_url : session_url ) %>
+<% submit_value = (action == :user ? "Sign up" : "Log in" ) %>
+<% user_email = (action == :user ? user.email : "" ) %>
+
+<form action="<%= action_url %>" method="POST">
+  <%= render 'layouts/auth_input' %>
+  
+  <label>
+    Email:
+    <input type="text" name="user[email]" value="<%= user_email %>">
+  </label>
+  <br>
+  <br>
+  
+  <label>
+    Password:
+    <input type="password" name="user[password]">
+  </label>
+  <br>
+  <br>
+  
+  <input type="submit" value="<%= submit_value %>">
+</form>

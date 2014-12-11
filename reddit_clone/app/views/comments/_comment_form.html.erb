@@ -1,0 +1,22 @@
+<% post_id_value = ( comment.id.nil? ? post.id : comment.post.id) %>
+
+<form action="<%=comments_url%>" method="POST">
+  <%= render 'layouts/auth_input' %>
+  
+  <label>
+    Comment:
+    <textarea name="comment[content]"></textarea>
+  </label>
+  <br>
+  <br>
+  
+  <% unless comment.id.nil? %>
+  <input type="hidden"
+         name="comment[parent_comment_id]"
+         value="<%= comment.id unless comment.nil? %>">
+  <% end %>
+  
+  <input type="hidden" name="comment[post_id]" value="<%= post_id_value %>" >
+  <input type="submit" value="Create Comment">
+
+</form>

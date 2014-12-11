@@ -1,0 +1,24 @@
+      "
+      SELECT
+        polls.*
+      FROM
+        polls
+      JOIN
+        questions ON polls.id = questions.poll_id
+      JOIN
+        (
+          SELECT
+            answer_choices.question_id as question_id,
+            responses.id as response_id
+          FROM
+            answer_choices
+          JOIN
+            responses ON answer_choices.id = responses.answer_choice_id
+          WHERE
+            user_id = ?
+        ) AS ans_questions ON ans_questions.question_id = questions.id
+      GROUP BY
+        polls.id
+      HAVING
+        COUNT(*) = SUM(CASE WHEN ans_questions.response_id IS NULL THEN 0 ELSE 1 END)
+      ",

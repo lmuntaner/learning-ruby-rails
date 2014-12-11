@@ -1,0 +1,8 @@
+<%= render @post %>
+
+<%= button_to "Upvote!", upvote_post_url(@post), method: :post %>
+<%= button_to "Downvote!", downvote_post_url(@post), method: :post %>
+
+<p><strong>These are the comments of the post</strong></p>
+
+<%= render @post.show_comments %>

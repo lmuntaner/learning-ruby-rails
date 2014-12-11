@@ -1,0 +1,11 @@
+<%= render @comment %>
+
+<p><strong>These are the children of this comment</strong></p>
+
+<%= render @comment.child_comments %>
+
+<p><strong>Create a new child comment</strong></p>
+
+<%= render "comment_form", comment: @comment %>
+
+<%=link_to "Back to Post", post_url(@comment.post.id) %>
